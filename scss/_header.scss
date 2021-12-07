@@ -1,0 +1,31 @@
+header {
+    font-size: 20px;
+    background-color: blue;
+}
+
+header button {
+    padding: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+header .container {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+.ibg > img {
+    width: 0px;
+    height: 0px;
+    font-size: 0px;
+}
