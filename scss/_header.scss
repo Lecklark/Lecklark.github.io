@@ -1,31 +1,68 @@
-header {
-    font-size: 20px;
-    background-color: blue;
-}
-
-header button {
-    padding: 5px;
-    font-size: 14px;
+.header {
+    padding-top: 30px;
+    margin-bottom: 50px;
     display: none;
+    @media (max-width: 470px) {
+        margin-bottom: 30px;
+    }
+    &__logo {
+        height: 50px;
+        width: 50px;
+        border-radius: 5px;
+    }
+
+    &__flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 40px;
+        font-weight: bold;
+        font-family: "Poppins";
+        @media (max-width: 400px) {
+            font-size: 30px;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+    }
+
+    &__email {
+        font-family: "Roboto", sans-serif;
+        margin-right: 20px;
+        @media (max-width: 600px) {
+            display: none;
+        }
+    }
+
+    &__logoutbtn {
+        background-color: #884cb2;
+        padding: 7px 13px;
+        color: #fff;
+        border-radius: 5px;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 }
 
-header .container {
-    padding: 20px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0px 20px;
 }
 
-.logo {
-    height: 50px;
-    width: 50px;
-    background-position: center;
+.ibg {
     background-size: cover;
-    border-radius: 5px;
-}
-
-.ibg > img {
-    width: 0px;
-    height: 0px;
-    font-size: 0px;
+    background-position: center;
+    img {
+        display: none;
+        width: 0px;
+        height: 0px;
+        font-size: 0px;
+    }
 }

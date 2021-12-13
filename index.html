@@ -6,83 +6,165 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
-
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+
     <header class="header">
         <div class="container">
-            <div class="logo ibg"><img src="./img/5e819a5ce865476b73087fd1276e7c3e.png" alt="Logo"></div>
-            <div class="header__email"></div>
-            <div class="header__buttons">
-                <div class="user_email"></div>
-                <button class="AuthBtn">Авторизация</button>
-                <button class="LogInBtn">Войти</button>
-                <button class="LogOutBtn">Выйти</button>
+            <div class="header__flex">
+                <div class="header__logo ibg"><img src="./img/Logo.png" alt="Logo"></div>
+                <div class="header__title">ToDo App</div>
+                <div class="header__nav">
+                    <div class="header__email"></div>
+                    <button class="header__logoutbtn">Выйти</button>
+                </div>
             </div>
-
-
-
         </div>
     </header>
 
+    <div class="mainscreen">
+        <div class="mainscreen__bg">
+        </div>
+        <div class="mainscreen__content">
+            <div class="mainscreen__logo ibg"><img src="./img/Logo.png" alt="Logo"></div>
+            <div class="mainscreen__title">ToDo App</div>
+
+            <button class="mainscreen__loginbtn">Войти</button>
+        </div>
+    </div>
+
     <main class="main">
         <div class="container">
-            <div class="todo__add">
-
+            <div class="categories">
+                <div class="categories__item active" id='work'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Work</div>
+                </div>
+                <div class="categories__item" id='family'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Family</div>
+                </div>
+                <div class="categories__item" id='study'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Study</div>
+                </div>
+                <div class="categories__item" id='shopping'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Shopping</div>
+                </div>
+                <div class="categories__item" id='home'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Home</div>
+                </div>
+                <div class="categories__item" id='pets'>
+                    <div class="categories__count"></div>
+                    <div class="categories__txt">Pets</div>
+                </div>
             </div>
-            <div class="todo__list">
 
+            <div class="main-up">
+                <div class="main-up__text">You’ve <span class="main-up__count"></span> in <span
+                        class="main-up__category"></span> category</div>
+                <form action="" class="main-up__form">
+                    <input required class="main-up__input" id="ToDoTitle" type="text" placeholder="Create new ToDo">
+                    <button type='submit' class="main-up__button"><img src="./img/Group.svg">
+                        <p>Add New</p>
+                    </button>
+                </form>
             </div>
+
+            <div class="on-hold">
+                <div class="on-hold__title">
+                    On Hold
+                </div>
+                <div class="todo__list">
+                    <div class="todo__item">
+                        <div class="todo__title">Evaluate the addition and deletion of user IDs.</div>
+                        <div class="todo__btns">
+                            <button class="todo__donebtn" id="">Done</button>
+                            <button class="todo__delbtn" id="">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="completed">
+                <div class="completed__title">
+                    Completed
+                </div>
+                <div class="todo__list todo__list_completed">
+                    <div class="todo__item">
+                        <div class="todo__title">Evaluate the addition and deletion of user IDs.</div>
+                        <div class="todo__btns">
+                            <button class="todo__delbtn" id="">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </main>
 
 
 
-    <div class="modalWin" id="modalAuth">
-        <div class="modalContent">
-            <button class="modalClose">Close</button>
-            <div>Login</div><input id="AuthLogin" type="text">
-            <div>Password</div><input id="AuthPass" type="password">
-            <button id="AuthPost">Create</button>
-        </div>
+    <div class="modal" id="modalAuth">
+        <form class="modal__content">
+            <div class="modal__title">Authorization</div>
+            <button class="modal__close">Close</button>
+            <input class="modal__input" id="AuthLogin" type="text" placeholder="Email">
+            <input class="modal__input" id="AuthPass" type="password" placeholder="Password">
+            <div class="modal__error"></div>
+            <button class="modal__submit" type='submit' id="AuthPost">Create</button>
+        </form>
     </div>
 
-    <div class="modalWin" id="modalLogIn">
-        <div class="modalContent">
-            <button class="modalClose">Close</button>
-            <div>Login</div><input id="LogInLogin" type="text">
-            <div>Password</div><input id="LogInPass" type="password">
-            <button id="LogInPost">Enter</button>
-        </div>
+    <div class="modal" id="modalLogIn">
+        <form class="modal__content">
+            <div class="modal__title">Log in</div>
+            <button class="modal__close">Close</button>
+            <input class="modal__input" id="LogInLogin" type="text" placeholder="Email">
+            <input class="modal__input" id="LogInPass" type="password" placeholder="Password">
+            <div class="modal__error"></div>
+            <button class="modal__submit" type="submit" id="enterAccountBtn">Enter</button>
+            <a link="#" class="modal__authlink">Create an account</a>
+        </form>
     </div>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8SvdwUY4CZ-YV7AaxASCj-me9oemB3Bo",
+            authDomain: "todoapp-c3f3f.firebaseapp.com",
+            projectId: "todoapp-c3f3f",
+            storageBucket: "todoapp-c3f3f.appspot.com",
+            messagingSenderId: "958371810448",
+            appId: "1:958371810448:web:f00f8d8757acf1e1705c15",
+            measurementId: "G-HSNHTY4Q5S"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+    </script>
+
+    <script src="./new_js/auth.js"></script>
+    <script src="./new_js/index.js"></script>
+
+
 </body>
 
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-<script>
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyA8SvdwUY4CZ-YV7AaxASCj-me9oemB3Bo",
-        authDomain: "todoapp-c3f3f.firebaseapp.com",
-        projectId: "todoapp-c3f3f",
-        storageBucket: "todoapp-c3f3f.appspot.com",
-        messagingSenderId: "958371810448",
-        appId: "1:958371810448:web:f00f8d8757acf1e1705c15",
-        measurementId: "G-HSNHTY4Q5S"
-    };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    db.settings({ timestampsInSnapshots: true });
-</script>
-
-<script src="js/index.js"></script>
-<script src="js/auth.js"></script>
-
-<link rel="stylesheet" href="./css/style.css">
 
 </html>
