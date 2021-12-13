@@ -223,6 +223,12 @@ h6 {
   padding: 50px 0;
 }
 
+@media (max-width: 600px) {
+  .mainscreen__content {
+    padding: 100px 0;
+  }
+}
+
 .mainscreen__logo {
   height: 100px;
   width: 100px;
