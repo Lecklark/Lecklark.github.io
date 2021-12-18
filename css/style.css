@@ -193,8 +193,8 @@ h6 {
 
 .mainscreen__bg {
   position: absolute;
-  width: 110%;
-  height: 110%;
+  width: 130%;
+  height: 130%;
   -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
   background: url(../img/3955809234_4da06511b8_b.jpg) center no-repeat;

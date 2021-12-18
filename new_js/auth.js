@@ -10,6 +10,9 @@ const authLinkBtn = modalLogIn.querySelector('.modal__authlink');
 const enterAccountBtn = modalLogIn.querySelector('#enterAccountBtn');
 const formLogIn = modalLogIn.querySelector('form');
 const formAuth = modalAuth.querySelector('form');
+const modalAuthError = modalAuth.querySelector('.modal__error');
+const modalLogInError = modalLogIn.querySelector('.modal__error');
+console.log(modalAuthError)
 
 //closing of modal windows and reseting inputs
 modalCloses.forEach(modalClose => {
@@ -19,6 +22,8 @@ modalCloses.forEach(modalClose => {
         e.target.parentNode.reset();
         modalAuth.style.display = 'none';
         modalLogIn.style.display = 'none';
+        modalAuthError.innerHTML = "";
+        modalLogInError.innerHTML = '';
         formLogIn.reset();
         formAuth.reset();
     })
@@ -53,6 +58,16 @@ formLogIn.addEventListener('submit', (e) => {
             modalLogIn.style.display = 'none';
             formLogIn.reset();
         })
+        .catch((err) => {
+            switch (err.code) {
+                case "auth/invalid-email":
+                    modalLogInError.innerHTML = "Invalid email";
+                    break
+                case "auth/wrong-password": modalLogInError.innerHTML = "Wrong password";
+                    break
+                case "auth/user-not-found": modalLogInError.innerHTML = "User not found";
+            }
+        })
 })
 
 //creating new user
@@ -71,7 +86,19 @@ formAuth.addEventListener('submit', e => {
                 db.collection("users").doc(info.user.uid).collection(catItem).doc('done').set({});
             })
             modalAuth.style.display = 'none';
+            modalAuthError.innerHTML = "";
             formLogIn.reset();
+        })
+        .catch((err) => {
+            console.log(err)
+            switch (err.code) {
+                case "auth/invalid-email": modalAuthError.innerHTML = "Invalid email";
+                    break
+                case "auth/weak-password": modalAuthError.innerHTML = "Password should be at least 6 characters";
+                    break
+                case "auth/email-already-in-use": modalAuthError.innerHTML = "The email address is already taken";
+                    break
+            }
         })
 })
 
